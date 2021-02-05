@@ -151,16 +151,16 @@ Internet-Draft                  DTLS 1.3                   February 2021
      B.1.  Confidentiality Limits  . . . . . . . . . . . . . . . . .  60
      B.2.  Integrity Limits  . . . . . . . . . . . . . . . . . . . .  61
      B.3.  Limits for AEAD_AES_128_CCM_8 . . . . . . . . . . . . . .  61
-   Appendix C.  Implementation Pitfalls  . . . . . . . . . . . . . .  62
-   Appendix D.  History  . . . . . . . . . . . . . . . . . . . . . .  62
-   Appendix E.  Working Group Information  . . . . . . . . . . . . .  64
-   Appendix F.  Contributors . . . . . . . . . . . . . . . . . . . .  65
-   Appendix G.  Acknowledgements . . . . . . . . . . . . . . . . . .  66
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  66
+   Appendix C.  History  . . . . . . . . . . . . . . . . . . . . . .  62
+   Appendix D.  Working Group Information  . . . . . . . . . . . . .  64
+   Appendix E.  Contributors . . . . . . . . . . . . . . . . . . . .  64
+   Appendix F.  Acknowledgements . . . . . . . . . . . . . . . . . .  65
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  65
 
 1.  Introduction
 
    RFC EDITOR: PLEASE REMOVE THE FOLLOWING PARAGRAPH
+
 
 
 
@@ -996,12 +996,12 @@ Internet-Draft                  DTLS 1.3                   February 2021
    Each DTLS record contains a sequence number to provide replay
    protection.  Sequence number verification SHOULD be performed using
    the following sliding window procedure, borrowed from Section 3.4.3
-   of [RFC4303].
+   of [RFC4303].  Because each epoch resets the sequence number space, a
+   separate sliding window is needed for each epoch.
 
-   The received record counter for an association MUST be initialized to
-   zero when that association is established.  For each received record,
-   the receiver MUST verify that the record contains a sequence number
-   that does not duplicate the sequence number of any other record
+   The received record counter for an epoch MUST be initialized to zero
+   when that epoch is first used.  For each received record, the
+   receiver MUST verify that the record contains a sequence number that
 
 
 
@@ -1010,11 +1010,12 @@ Rescorla, et al.          Expires 9 August 2021                [Page 18]
 Internet-Draft                  DTLS 1.3                   February 2021
 
 
-   received during the lifetime of the association.  This check SHOULD
-   happen after deprotecting the record; otherwise the record discard
-   might itself serve as a timing channel for the record number.  Note
-   that computing the full record number from the partial is still a
-   potential timing channel for the record number, though a less
+   does not duplicate the sequence number of any other record received
+   in that epoch during the lifetime of the association.  This check
+   SHOULD happen after deprotecting the record; otherwise the record
+   discard might itself serve as a timing channel for the record number.
+   Note that computing the full record number from the partial is still
+   a potential timing channel for the record number, though a less
    powerful one than whether the record was deprotected.
 
    Duplicates are rejected through the use of a sliding receive window.
@@ -1025,8 +1026,8 @@ Internet-Draft                  DTLS 1.3                   February 2021
    receiver does not notify the sender of the window size.)
 
    The "right" edge of the window represents the highest validated
-   sequence number value received on the association.  Records that
-   contain sequence numbers lower than the "left" edge of the window are
+   sequence number value received in the epoch.  Records that contain
+   sequence numbers lower than the "left" edge of the window are
    rejected.  Records falling within the window are checked against a
    list of received records within the window.  An efficient means for
    performing this check, based on the use of a bit mask, is described
@@ -1057,7 +1058,6 @@ Internet-Draft                  DTLS 1.3                   February 2021
    forgery (e.g., SCTP with SCTP-AUTH), then it is safer to send alerts
    because an attacker will have difficulty forging a datagram that will
    not be rejected by the transport layer.
-
 
 
 
@@ -3427,30 +3427,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
    different target for the advantage an attacker gains based on an
    understanding of the constraints imposed on a specific usage of DTLS.
 
-Appendix C.  Implementation Pitfalls
-
-   In addition to the aspects of TLS that have been a source of
-   interoperability and security problems (Section C.3 of [TLS13]), DTLS
-   presents a few new potential sources of issues, noted here.
-
-   *  Do you correctly handle messages received from multiple epochs
-      during a key transition?  This includes locating the correct key
-      as well as performing replay detection, if enabled.
-
-   *  Do you retransmit handshake messages that are not (implicitly or
-      explicitly) acknowledged (Section 5.8)?
-
-   *  Do you correctly handle handshake message fragments received out
-      of order, including receiving fragments of subsequent handshake
-      messages?
-
-   *  Do you limit how much data you send to a peer before its address
-      is validated?
-
-   *  Do you verify that the explicit record length is contained within
-      the datagram in which it is contained?
-
-Appendix D.  History
+Appendix C.  History
 
    RFC EDITOR: PLEASE REMOVE THE THIS SECTION
 
@@ -3459,20 +3436,6 @@ Appendix D.  History
    IETF Drafts
 
    draft-40
-
-
-
-
-
-
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 62]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
 
    - Clarified encrypted_record structure in DTLS 1.3 record layer
    - Added description of the demultiplexing process
@@ -3504,6 +3467,13 @@ Internet-Draft                  DTLS 1.3                   February 2021
    draft-36: - Some editorial changes. - Changed the content type to not
    conflict with existing allocations (*)
 
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 62]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
+
    draft-35: - I-D.ietf-tls-dtls-connection-id became a normative
    reference - Removed duplicate reference to I-D.ietf-tls-dtls-
    connection-id. - Fix figure 11 to have the right numbers andno cookie
@@ -3520,15 +3490,6 @@ Internet-Draft                  DTLS 1.3                   February 2021
    draft-30: - Changed record format - Added text about end of early
    data - Changed format of the Connection ID Update message - Added
    Appendix A "Protocol Data Structures and Constant Values"
-
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 63]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
 
    draft-29: - Added support for sequence number encryption - Update to
    new record format - Emphasize that compatibility mode isn't used.
@@ -3560,6 +3521,15 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    *  Use of epoch values instead of KeyUpdate message
 
+
+
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 63]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
+
    *  Use of cookie extension instead of cookie field in ClientHello and
       HelloVerifyRequest messages
 
@@ -3567,7 +3537,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    *  Text about sequence number handling
 
-Appendix E.  Working Group Information
+Appendix D.  Working Group Information
 
    RFC EDITOR: PLEASE REMOVE THIS SECTION.
 
@@ -3577,20 +3547,11 @@ Appendix E.  Working Group Information
    https://www1.ietf.org/mailman/listinfo/tls
    (https://www1.ietf.org/mailman/listinfo/tls)
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 64]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    Archives of the list can be found at: https://www.ietf.org/mail-
    archive/web/tls/current/index.html (https://www.ietf.org/mail-
    archive/web/tls/current/index.html)
 
-Appendix F.  Contributors
+Appendix E.  Contributors
 
    Many people have contributed to previous DTLS versions and they are
    acknowledged in prior versions of DTLS specifications or in the
@@ -3617,6 +3578,14 @@ Appendix F.  Contributors
      ETH Zurich
      mail@felixguenther.info
 
+
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 64]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
+
    * Ilari Liusvaara
      Independent
      ilariliusvaara@welho.com
@@ -3633,20 +3602,11 @@ Appendix F.  Contributors
      Huawei
      yinxinxing@huawei.com
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 65]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    * Hanno Becker
      Arm Limited
      Hanno.Becker@arm.com
 
-Appendix G.  Acknowledgements
+Appendix F.  Acknowledgements
 
    We would like to thank Jonathan Hammell and Andy Cunningham for their
    review comments.
@@ -3677,20 +3637,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 66]
+Rescorla, et al.          Expires 9 August 2021                [Page 65]
