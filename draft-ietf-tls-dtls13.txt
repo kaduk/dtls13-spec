@@ -151,16 +151,16 @@ Internet-Draft                  DTLS 1.3                   February 2021
      B.1.  Confidentiality Limits  . . . . . . . . . . . . . . . . .  60
      B.2.  Integrity Limits  . . . . . . . . . . . . . . . . . . . .  61
      B.3.  Limits for AEAD_AES_128_CCM_8 . . . . . . . . . . . . . .  61
-   Appendix C.  History  . . . . . . . . . . . . . . . . . . . . . .  62
-   Appendix D.  Working Group Information  . . . . . . . . . . . . .  64
-   Appendix E.  Contributors . . . . . . . . . . . . . . . . . . . .  64
-   Appendix F.  Acknowledgements . . . . . . . . . . . . . . . . . .  65
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  65
+   Appendix C.  Implementation Pitfalls  . . . . . . . . . . . . . .  62
+   Appendix D.  History  . . . . . . . . . . . . . . . . . . . . . .  62
+   Appendix E.  Working Group Information  . . . . . . . . . . . . .  64
+   Appendix F.  Contributors . . . . . . . . . . . . . . . . . . . .  65
+   Appendix G.  Acknowledgements . . . . . . . . . . . . . . . . . .  66
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  66
 
 1.  Introduction
 
    RFC EDITOR: PLEASE REMOVE THE FOLLOWING PARAGRAPH
-
 
 
 
@@ -475,7 +475,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
    legacy_record_version  This value MUST be set to {254, 253} for all
       records other than the initial ClientHello (i.e., one not
       generated after a HelloRetryRequest), where it may also be {254,
-      255} for compatibility purposes.  It MUST be ignored for all
+      254} for compatibility purposes.  It MUST be ignored for all
       purposes.  See [TLS13]; Appendix D.1 for the rationale for this.
 
    unified_hdr:  The unified header (unified_hdr) is a structure of
@@ -1266,12 +1266,11 @@ Internet-Draft                  DTLS 1.3                   February 2021
    Section 4.4.1 of [TLS13].
 
    The handshake transcript is not reset with the second ClientHello and
-   a stateless server-cookie implementation requires the content or hash
-   of the initial ClientHello (and HelloRetryRequest) to be stored in
-   the cookie.  The initial ClientHello is included in the handshake
-   transcript as a synthetic "message_hash" message, so only the hash
-   value is needed for the handshake to complete, though the complete
-   HelloRetryRequest contents are needed.
+   a stateless server-cookie implementation requires the transcript or
+   hash of the HelloRetryRequest to be stored in the cookie, since the
+   initial ClientHello is included in the handshake transcript as a
+   synthetic "message_hash" message, so only the hash value is needed
+   for the handshake to complete.
 
    When the second ClientHello is received, the server can verify that
    the cookie is valid and that the client can receive packets at the
@@ -1282,6 +1281,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
    One potential attack on this scheme is for the attacker to collect a
    number of cookies from different addresses where it controls
    endpoints and then reuse them to attack the server.  The server can
+   defend against this attack by changing the secret value frequently,
 
 
 
@@ -1290,7 +1290,6 @@ Rescorla, et al.          Expires 9 August 2021                [Page 23]
 Internet-Draft                  DTLS 1.3                   February 2021
 
 
-   defend against this attack by changing the secret value frequently,
    thus invalidating those cookies.  If the server wishes to allow
    legitimate clients to handshake through the transition (e.g., a
    client received a cookie with Secret 1 and then sent the second
@@ -1338,6 +1337,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    In order to support message loss, reordering, and message
    fragmentation, DTLS modifies the TLS 1.3 handshake header:
+
 
 
 
@@ -1553,8 +1553,8 @@ Internet-Draft                  DTLS 1.3                   February 2021
    from epoch 3, this is not likely to persist for very long relative to
    the round trip time.  Servers could discard epoch 1 keys after the
    first epoch 3 data arrives, or retain keys for processing epoch 1
-   data for a short period.  (See Section 6.1 for the definitions of
-   each epoch.)
+   data for a short period. is received.  (See Section 6.1 for the
+   definitions of each epoch.)
 
 
 
@@ -1609,7 +1609,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
       acknowledged with an ACK message.
 
    Below are several example message exchange illustrating the flight
-   concept.  The notational conventions from [RFC8446] are used.
+   concept.
 
 
 
@@ -2548,7 +2548,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    The use of the ACK for the second case is mandatory for the proper
    functioning of the protocol.  For instance, the ACK message sent by
-   the client in Figure 13, acknowledges receipt and processing of
+   the client in Figure 12, acknowledges receipt and processing of
    record 4 (containing the NewSessionTicket message) and if it is not
    sent the server will continue retransmission of the NewSessionTicket
    indefinitely until its transmission cap is reached.
@@ -3026,10 +3026,6 @@ Rescorla, et al.          Expires 9 August 2021                [Page 54]
 Internet-Draft                  DTLS 1.3                   February 2021
 
 
-   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
-              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/info/rfc8446>.
-
    [TLS13]    Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/info/rfc8446>.
@@ -3075,16 +3071,16 @@ Internet-Draft                  DTLS 1.3                   February 2021
               Security", RFC 4347, DOI 10.17487/RFC4347, April 2006,
               <https://www.rfc-editor.org/info/rfc4347>.
 
+   [RFC4960]  Stewart, R., Ed., "Stream Control Transmission Protocol",
+              RFC 4960, DOI 10.17487/RFC4960, September 2007,
+              <https://www.rfc-editor.org/info/rfc4960>.
+
 
 
 Rescorla, et al.          Expires 9 August 2021                [Page 55]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
-
-   [RFC4960]  Stewart, R., Ed., "Stream Control Transmission Protocol",
-              RFC 4960, DOI 10.17487/RFC4960, September 2007,
-              <https://www.rfc-editor.org/info/rfc4960>.
 
    [RFC5238]  Phelan, T., "Datagram Transport Layer Security (DTLS) over
               the Datagram Congestion Control Protocol (DCCP)",
@@ -3130,6 +3126,10 @@ Internet-Draft                  DTLS 1.3                   February 2021
               Channels: Handling Unreliable Networks in the Record
               Layers of QUIC and DTLS 1.3", 15 June 2020,
               <https://eprint.iacr.org/2020/718>.
+
+
+
+
 
 
 
@@ -3427,7 +3427,30 @@ Internet-Draft                  DTLS 1.3                   February 2021
    different target for the advantage an attacker gains based on an
    understanding of the constraints imposed on a specific usage of DTLS.
 
-Appendix C.  History
+Appendix C.  Implementation Pitfalls
+
+   In addition to the aspects of TLS that have been a source of
+   interoperability and security problems (Section C.3 of [TLS13]), DTLS
+   presents a few new potential sources of issues, noted here.
+
+   *  Do you correctly handle messages received from multiple epochs
+      during a key transition?  This includes locating the correct key
+      as well as performing replay detection, if enabled.
+
+   *  Do you retransmit handshake messages that are not (implicitly or
+      explicitly) acknowledged (Section 5.8)?
+
+   *  Do you correctly handle handshake message fragments received out
+      of order, including receiving fragments of subsequent handshake
+      messages?
+
+   *  Do you limit how much data you send to a peer before its address
+      is validated?
+
+   *  Do you verify that the explicit record length is contained within
+      the datagram in which it is contained?
+
+Appendix D.  History
 
    RFC EDITOR: PLEASE REMOVE THE THIS SECTION
 
@@ -3436,6 +3459,20 @@ Appendix C.  History
    IETF Drafts
 
    draft-40
+
+
+
+
+
+
+
+
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 62]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    - Clarified encrypted_record structure in DTLS 1.3 record layer
    - Added description of the demultiplexing process
@@ -3467,13 +3504,6 @@ Appendix C.  History
    draft-36: - Some editorial changes. - Changed the content type to not
    conflict with existing allocations (*)
 
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 62]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    draft-35: - I-D.ietf-tls-dtls-connection-id became a normative
    reference - Removed duplicate reference to I-D.ietf-tls-dtls-
    connection-id. - Fix figure 11 to have the right numbers andno cookie
@@ -3490,6 +3520,15 @@ Internet-Draft                  DTLS 1.3                   February 2021
    draft-30: - Changed record format - Added text about end of early
    data - Changed format of the Connection ID Update message - Added
    Appendix A "Protocol Data Structures and Constant Values"
+
+
+
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 63]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    draft-29: - Added support for sequence number encryption - Update to
    new record format - Emphasize that compatibility mode isn't used.
@@ -3521,15 +3560,6 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    *  Use of epoch values instead of KeyUpdate message
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 63]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    *  Use of cookie extension instead of cookie field in ClientHello and
       HelloVerifyRequest messages
 
@@ -3537,7 +3567,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    *  Text about sequence number handling
 
-Appendix D.  Working Group Information
+Appendix E.  Working Group Information
 
    RFC EDITOR: PLEASE REMOVE THIS SECTION.
 
@@ -3547,11 +3577,20 @@ Appendix D.  Working Group Information
    https://www1.ietf.org/mailman/listinfo/tls
    (https://www1.ietf.org/mailman/listinfo/tls)
 
+
+
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 64]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
+
    Archives of the list can be found at: https://www.ietf.org/mail-
    archive/web/tls/current/index.html (https://www.ietf.org/mail-
    archive/web/tls/current/index.html)
 
-Appendix E.  Contributors
+Appendix F.  Contributors
 
    Many people have contributed to previous DTLS versions and they are
    acknowledged in prior versions of DTLS specifications or in the
@@ -3578,14 +3617,6 @@ Appendix E.  Contributors
      ETH Zurich
      mail@felixguenther.info
 
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 64]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    * Ilari Liusvaara
      Independent
      ilariliusvaara@welho.com
@@ -3602,11 +3633,20 @@ Internet-Draft                  DTLS 1.3                   February 2021
      Huawei
      yinxinxing@huawei.com
 
+
+
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 65]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
+
    * Hanno Becker
      Arm Limited
      Hanno.Becker@arm.com
 
-Appendix F.  Acknowledgements
+Appendix G.  Acknowledgements
 
    We would like to thank Jonathan Hammell and Andy Cunningham for their
    review comments.
@@ -3637,4 +3677,20 @@ Authors' Addresses
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 65]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rescorla, et al.          Expires 9 August 2021                [Page 66]
