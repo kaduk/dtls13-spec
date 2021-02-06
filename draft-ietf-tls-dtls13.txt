@@ -6,9 +6,9 @@ TLS                                                          E. Rescorla
 Internet-Draft                                                RTFM, Inc.
 Obsoletes: 6347 (if approved)                              H. Tschofenig
 Intended status: Standards Track                             Arm Limited
-Expires: 9 August 2021                                       N. Modadugu
+Expires: 10 August 2021                                      N. Modadugu
                                                             Google, Inc.
-                                                         5 February 2021
+                                                         6 February 2021
 
 
    The Datagram Transport Layer Security (DTLS) Protocol Version 1.3
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 August 2021.
+   This Internet-Draft will expire on 10 August 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 1]
+Rescorla, et al.         Expires 10 August 2021                 [Page 1]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 2]
+Rescorla, et al.         Expires 10 August 2021                 [Page 2]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -137,25 +137,25 @@ Internet-Draft                  DTLS 1.3                   February 2021
      9.1.  Connection ID Example . . . . . . . . . . . . . . . . . .  49
    10. Application Data Protocol . . . . . . . . . . . . . . . . . .  51
    11. Security Considerations . . . . . . . . . . . . . . . . . . .  51
-   12. Changes since DTLS 1.2  . . . . . . . . . . . . . . . . . . .  52
-   13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  53
-   14. References  . . . . . . . . . . . . . . . . . . . . . . . . .  53
-     14.1.  Normative References . . . . . . . . . . . . . . . . . .  53
+   12. Changes since DTLS 1.2  . . . . . . . . . . . . . . . . . . .  53
+   13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  54
+   14. References  . . . . . . . . . . . . . . . . . . . . . . . . .  54
+     14.1.  Normative References . . . . . . . . . . . . . . . . . .  54
      14.2.  Informative References . . . . . . . . . . . . . . . . .  55
    Appendix A.  Protocol Data Structures and Constant Values . . . .  57
      A.1.  Record Layer  . . . . . . . . . . . . . . . . . . . . . .  57
      A.2.  Handshake Protocol  . . . . . . . . . . . . . . . . . . .  58
-     A.3.  ACKs  . . . . . . . . . . . . . . . . . . . . . . . . . .  59
-     A.4.  Connection ID Management  . . . . . . . . . . . . . . . .  59
-   Appendix B.  Analysis of Limits on CCM Usage  . . . . . . . . . .  59
-     B.1.  Confidentiality Limits  . . . . . . . . . . . . . . . . .  60
-     B.2.  Integrity Limits  . . . . . . . . . . . . . . . . . . . .  61
-     B.3.  Limits for AEAD_AES_128_CCM_8 . . . . . . . . . . . . . .  61
-   Appendix C.  History  . . . . . . . . . . . . . . . . . . . . . .  62
-   Appendix D.  Working Group Information  . . . . . . . . . . . . .  64
-   Appendix E.  Contributors . . . . . . . . . . . . . . . . . . . .  64
-   Appendix F.  Acknowledgements . . . . . . . . . . . . . . . . . .  65
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  65
+     A.3.  ACKs  . . . . . . . . . . . . . . . . . . . . . . . . . .  60
+     A.4.  Connection ID Management  . . . . . . . . . . . . . . . .  60
+   Appendix B.  Analysis of Limits on CCM Usage  . . . . . . . . . .  60
+     B.1.  Confidentiality Limits  . . . . . . . . . . . . . . . . .  61
+     B.2.  Integrity Limits  . . . . . . . . . . . . . . . . . . . .  62
+     B.3.  Limits for AEAD_AES_128_CCM_8 . . . . . . . . . . . . . .  62
+   Appendix C.  History  . . . . . . . . . . . . . . . . . . . . . .  63
+   Appendix D.  Working Group Information  . . . . . . . . . . . . .  65
+   Appendix E.  Contributors . . . . . . . . . . . . . . . . . . . .  65
+   Appendix F.  Acknowledgements . . . . . . . . . . . . . . . . . .  66
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  66
 
 1.  Introduction
 
@@ -165,7 +165,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 3]
+Rescorla, et al.         Expires 10 August 2021                 [Page 3]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -221,7 +221,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 4]
+Rescorla, et al.         Expires 10 August 2021                 [Page 4]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -277,7 +277,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 5]
+Rescorla, et al.         Expires 10 August 2021                 [Page 5]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -333,7 +333,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 6]
+Rescorla, et al.         Expires 10 August 2021                 [Page 6]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -389,7 +389,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 7]
+Rescorla, et al.         Expires 10 August 2021                 [Page 7]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -445,7 +445,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 8]
+Rescorla, et al.         Expires 10 August 2021                 [Page 8]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -501,7 +501,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                 [Page 9]
+Rescorla, et al.         Expires 10 August 2021                 [Page 9]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -557,7 +557,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 10]
+Rescorla, et al.         Expires 10 August 2021                [Page 10]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -613,7 +613,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 11]
+Rescorla, et al.         Expires 10 August 2021                [Page 11]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -669,7 +669,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 12]
+Rescorla, et al.         Expires 10 August 2021                [Page 12]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -725,7 +725,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 13]
+Rescorla, et al.         Expires 10 August 2021                [Page 13]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -781,7 +781,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 14]
+Rescorla, et al.         Expires 10 August 2021                [Page 14]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -837,7 +837,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 15]
+Rescorla, et al.         Expires 10 August 2021                [Page 15]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -893,7 +893,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 16]
+Rescorla, et al.         Expires 10 August 2021                [Page 16]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -949,7 +949,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 17]
+Rescorla, et al.         Expires 10 August 2021                [Page 17]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 18]
+Rescorla, et al.         Expires 10 August 2021                [Page 18]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 19]
+Rescorla, et al.         Expires 10 August 2021                [Page 19]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 20]
+Rescorla, et al.         Expires 10 August 2021                [Page 20]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 21]
+Rescorla, et al.         Expires 10 August 2021                [Page 21]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 22]
+Rescorla, et al.         Expires 10 August 2021                [Page 22]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 23]
+Rescorla, et al.         Expires 10 August 2021                [Page 23]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1341,7 +1341,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 24]
+Rescorla, et al.         Expires 10 August 2021                [Page 24]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 25]
+Rescorla, et al.         Expires 10 August 2021                [Page 25]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 26]
+Rescorla, et al.         Expires 10 August 2021                [Page 26]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1509,7 +1509,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 27]
+Rescorla, et al.         Expires 10 August 2021                [Page 27]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1565,7 +1565,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 28]
+Rescorla, et al.         Expires 10 August 2021                [Page 28]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 29]
+Rescorla, et al.         Expires 10 August 2021                [Page 29]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1677,7 +1677,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 30]
+Rescorla, et al.         Expires 10 August 2021                [Page 30]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 31]
+Rescorla, et al.         Expires 10 August 2021                [Page 31]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 32]
+Rescorla, et al.         Expires 10 August 2021                [Page 32]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1845,7 +1845,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 33]
+Rescorla, et al.         Expires 10 August 2021                [Page 33]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1901,7 +1901,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 34]
+Rescorla, et al.         Expires 10 August 2021                [Page 34]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -1957,7 +1957,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 35]
+Rescorla, et al.         Expires 10 August 2021                [Page 35]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2013,7 +2013,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 36]
+Rescorla, et al.         Expires 10 August 2021                [Page 36]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2069,7 +2069,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 37]
+Rescorla, et al.         Expires 10 August 2021                [Page 37]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2125,7 +2125,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 38]
+Rescorla, et al.         Expires 10 August 2021                [Page 38]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2181,7 +2181,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 39]
+Rescorla, et al.         Expires 10 August 2021                [Page 39]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2237,7 +2237,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 40]
+Rescorla, et al.         Expires 10 August 2021                [Page 40]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2293,7 +2293,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 41]
+Rescorla, et al.         Expires 10 August 2021                [Page 41]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2349,7 +2349,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 42]
+Rescorla, et al.         Expires 10 August 2021                [Page 42]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2395,17 +2395,17 @@ Internet-Draft                  DTLS 1.3                   February 2021
    are not the next expected message.
 
    During the handshake, ACKs only cover the current outstanding flight
-   (this is possible because DTLS is generally a lockstep protocol).  In
-   particular, receiving a message from a handshake flight implicitly
-   acknowledges all messages from the previous flight(s).  Accordingly,
-   an ACK from the server would not cover both the ClientHello and the
-   client's Certificate, because the ClientHello and client Certificate
-   are in different flights.  Implementations can accomplish this by
+   (this is possible because DTLS is generally a lockstep protocol).
+   Thus, an ACK from the server would not cover both the ClientHello and
+   the client's Certificate.  Implementations can accomplish this by
    clearing their ACK list upon receiving the start of the next flight.
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 43]
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 43]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2461,7 +2461,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 44]
+Rescorla, et al.         Expires 10 August 2021                [Page 44]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2517,7 +2517,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 45]
+Rescorla, et al.         Expires 10 August 2021                [Page 45]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2573,7 +2573,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 46]
+Rescorla, et al.         Expires 10 August 2021                [Page 46]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2629,7 +2629,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 47]
+Rescorla, et al.         Expires 10 August 2021                [Page 47]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2685,7 +2685,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 48]
+Rescorla, et al.         Expires 10 August 2021                [Page 48]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2741,7 +2741,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 49]
+Rescorla, et al.         Expires 10 August 2021                [Page 49]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2797,7 +2797,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 50]
+Rescorla, et al.         Expires 10 August 2021                [Page 50]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -2825,15 +2825,52 @@ Internet-Draft                  DTLS 1.3                   February 2021
    Clients MUST be prepared to do a cookie exchange with every
    handshake.
 
-   DTLS implementations MUST NOT update the address they send to in
-   response to packets from a different address unless they first
-   perform some reachability test; no such test is defined in this
-   specification.  Even with such a test, an active on-path adversary
-   can also black-hole traffic or create a reflection attack against
-   third parties because a DTLS peer has no means to distinguish a
-   genuine address update event (for example, due to a NAT rebinding)
-   from one that is malicious.  This attack is of concern when there is
-   a large asymmetry of request/response message sizes.
+   Some key properties required of the cookie for the cookie-exchange
+   mechanism to be functional are described in Section 3.3 of [RFC2522]:
+
+   *  the cookie MUST depend on the specific parties (i.e., 5-tuple)
+
+   *  it MUST NOT be possible for anyone other than the issuing entity
+      to generate cookies that are accepted as valid by that entity.
+      This typically entails the use of a keyed MAC and secret key.
+
+   *  cookie generation and verification are triggered by
+      unauthenticated parties, and as such their resource consumption
+      needs to be restrained in order to avoid having the cookie-
+      exchange mechanism itself serve as a DoS vector.
+
+   When cookies are generated using a keyed MAC (such as HMAC with a
+   cryptographic hash function), it should be possible to rotate the
+   associated secret key, so that temporary compromise of the key does
+   not permanently compromise the integrity of the cookie-exchange
+   mechanism.  Though this secret is not as high-value as, e.g., a
+   session-ticket-encryption key, rotating the cookie-generation key on
+   a similar timescale would ensure that the key-rotation functionality
+   is exercised regularly and thus in working order.
+
+
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 51]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
+
+   The cookie exchange provides address validation during the initial
+   handshake.  DTLS with connection IDs allow for endpoint addresses to
+   change during the association; any such updated addresses are not
+   covered by the cookie exchange during the handshake.  DTLS
+   implementations MUST NOT update the address they send to in response
+   to packets from a different address unless they first perform some
+   reachability test; no such test is defined in this specification.
+   Even with such a test, an active on-path adversary can also black-
+   hole traffic or create a reflection attack against third parties
+   because a DTLS peer has no means to distinguish a genuine address
+   update event (for example, due to a NAT rebinding) from one that is
+   malicious.  This attack is of concern when there is a large asymmetry
+   of request/response message sizes.
 
    With the exception of order protection and non-replayability, the
    security guarantees for DTLS 1.3 are the same as TLS 1.3.  While TLS
@@ -2843,20 +2880,17 @@ Internet-Draft                  DTLS 1.3                   February 2021
    Unlike TLS implementations, DTLS implementations SHOULD NOT respond
    to invalid records by terminating the connection.
 
+   TLS 1.3 requires replay protection for 0-RTT data (or rather, for
+   connections that use 0-RTT data; see Section 8 of [TLS13]).  DTLS
+   provides an optional per-record replay-protection mechanism, since
+   datagram protocols are inherently subject to message reordering and
+   replay.  These two replay-protection mechanisms are orthogonal, and
+   neither mechanism meets the requirements for the other.
+
    The security and privacy properties of the CID for DTLS 1.3 builds on
    top of what is described for DTLS 1.2 in
    [I-D.ietf-tls-dtls-connection-id].  There are, however, several
    differences:
-
-
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 51]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
 
    *  In both versions of DTLS extension negotiation is used to agree on
       the use of the CID feature and the CID values.  In both versions
@@ -2872,6 +2906,14 @@ Internet-Draft                  DTLS 1.3                   February 2021
       properties in multi-homed scenarios.  When only a single CID is in
       use on multiple paths from such a host, an adversary can correlate
       the communication interaction across paths, which adds further
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 52]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
+
       privacy concerns.  In order to prevent this, implementations
       SHOULD attempt to use fresh CIDs whenever they change local
       addresses or ports (though this is not always possible to detect).
@@ -2905,15 +2947,6 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    *  New handshake pattern, which leads to a shorter message exchange
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 52]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    *  Only AEAD ciphers are supported.  Additional data calculation has
       been simplified.
 
@@ -2929,6 +2962,13 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
    *  New key derivation hierarchy utilizing a new key derivation
       construct
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 53]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    *  Improved version negotiation
 
@@ -2961,15 +3001,6 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 14.1.  Normative References
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 53]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    [CHACHA]   Nir, Y. and A. Langley, "ChaCha20 and Poly1305 for IETF
               Protocols", RFC 8439, DOI 10.17487/RFC8439, June 2018,
               <https://www.rfc-editor.org/info/rfc8439>.
@@ -2984,6 +3015,16 @@ Internet-Draft                  DTLS 1.3                   February 2021
    [RFC0768]  Postel, J., "User Datagram Protocol", STD 6, RFC 768,
               DOI 10.17487/RFC0768, August 1980,
               <https://www.rfc-editor.org/info/rfc768>.
+
+
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 54]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    [RFC0793]  Postel, J., "Transmission Control Protocol", STD 7,
               RFC 793, DOI 10.17487/RFC0793, September 1981,
@@ -3017,15 +3058,6 @@ Internet-Draft                  DTLS 1.3                   February 2021
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 54]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    [TLS13]    Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/info/rfc8446>.
@@ -3041,6 +3073,14 @@ Internet-Draft                  DTLS 1.3                   February 2021
               Areas in Cryptography pp. 76-93,
               DOI 10.1007/3-540-36492-7_7, 2003,
               <https://doi.org/10.1007/3-540-36492-7_7>.
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 55]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    [DEPRECATE]
               Moriarty, K. and S. Farrell, "Deprecating TLSv1.0 and
@@ -3075,13 +3115,6 @@ Internet-Draft                  DTLS 1.3                   February 2021
               RFC 4960, DOI 10.17487/RFC4960, September 2007,
               <https://www.rfc-editor.org/info/rfc4960>.
 
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 55]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    [RFC5238]  Phelan, T., "Datagram Transport Layer Security (DTLS) over
               the Datagram Congestion Control Protocol (DCCP)",
               RFC 5238, DOI 10.17487/RFC5238, May 2008,
@@ -3095,6 +3128,15 @@ Internet-Draft                  DTLS 1.3                   February 2021
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <https://www.rfc-editor.org/info/rfc6347>.
+
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 56]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    [RFC7296]  Kaufman, C., Hoffman, P., Nir, Y., Eronen, P., and T.
               Kivinen, "Internet Key Exchange Protocol Version 2
@@ -3127,23 +3169,30 @@ Internet-Draft                  DTLS 1.3                   February 2021
               Layers of QUIC and DTLS 1.3", 15 June 2020,
               <https://eprint.iacr.org/2020/718>.
 
-
-
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 56]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
 Appendix A.  Protocol Data Structures and Constant Values
 
    This section provides the normative protocol types and constants
    definitions.
 
 A.1.  Record Layer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 57]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    struct {
        ContentType type;
@@ -3186,15 +3235,20 @@ A.1.  Record Layer
        uint48 sequence_number;
    } RecordNumber;
 
+A.2.  Handshake Protocol
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 57]
+
+
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 58]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
-
-A.2.  Handshake Protocol
 
    enum {
        hello_request_RESERVED(0),
@@ -3243,14 +3297,14 @@ A.2.  Handshake Protocol
    uint16 ProtocolVersion;
    opaque Random[32];
 
+   uint8 CipherSuite[2];    /* Cryptographic suite selector */
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 58]
+
+Rescorla, et al.         Expires 10 August 2021                [Page 59]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
-
-   uint8 CipherSuite[2];    /* Cryptographic suite selector */
 
    struct {
        ProtocolVersion legacy_version = { 254,253 }; // DTLSv1.2
@@ -3297,18 +3351,16 @@ Appendix B.  Analysis of Limits on CCM Usage
    that analysis are used to derive usage limits that are based on those
    chosen in [TLS13].
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 59]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    This analysis uses symbols for multiplication (*), division (/), and
    exponentiation (^), plus parentheses for establishing precedence.
    The following symbols are also used:
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 60]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
    t:  The size of the authentication tag in bits.  For this cipher, t
       is 128.
@@ -3353,18 +3405,18 @@ B.1.  Confidentiality Limits
 
    q <= 2^23
 
-
-
-
-
-Rescorla, et al.          Expires 9 August 2021                [Page 60]
-
-Internet-Draft                  DTLS 1.3                   February 2021
-
-
    That is, endpoints cannot protect more than 2^23 packets with the
    same set of keys without causing an attacker to gain an larger
    advantage than the target of 2^-60.
+
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 61]
+
+Internet-Draft                  DTLS 1.3                   February 2021
+
 
 B.2.  Integrity Limits
 
@@ -3413,7 +3465,11 @@ B.3.  Limits for AEAD_AES_128_CCM_8
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 61]
+
+
+
+
+Rescorla, et al.         Expires 10 August 2021                [Page 62]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -3469,7 +3525,7 @@ Appendix C.  History
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 62]
+Rescorla, et al.         Expires 10 August 2021                [Page 63]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -3525,7 +3581,7 @@ Internet-Draft                  DTLS 1.3                   February 2021
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 63]
+Rescorla, et al.         Expires 10 August 2021                [Page 64]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -3581,7 +3637,7 @@ Appendix E.  Contributors
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 64]
+Rescorla, et al.         Expires 10 August 2021                [Page 65]
 
 Internet-Draft                  DTLS 1.3                   February 2021
 
@@ -3637,4 +3693,4 @@ Authors' Addresses
 
 
 
-Rescorla, et al.          Expires 9 August 2021                [Page 65]
+Rescorla, et al.         Expires 10 August 2021                [Page 66]
